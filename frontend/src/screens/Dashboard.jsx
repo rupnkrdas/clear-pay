@@ -49,7 +49,6 @@ const DashboardPage = () => {
 
 	const handleSignout = () => {
 		localStorage.removeItem("token");
-		// useResetRecoilState(currentUser);
 		navigate("/signin");
 	};
 
@@ -66,14 +65,9 @@ const DashboardPage = () => {
 				},
 			});
 
-			if (res.status === 200) {
-				setCurrentUser(res.data);
-			} else {
-				alert(`${res.data.message}`);
-				navigate("/signin");
-			}
+			setCurrentUser(res.data);
 		} catch (err) {
-			alert(`${err}`);
+			navigate("/signin");
 		}
 	};
 	const fetchUserBalance = async () => {
@@ -84,14 +78,9 @@ const DashboardPage = () => {
 				},
 			});
 
-			if (res.status === 200) {
-				setCurrentUserBalance(res.data.balance);
-			} else {
-				alert(`${res.data.message}`);
-				navigate("/signin");
-			}
+			setCurrentUserBalance(res.data.balance);
 		} catch (err) {
-			alert(`${err}`);
+			navigate("/signin");
 		}
 	};
 	const fetchDbUsers = async () => {
@@ -104,7 +93,7 @@ const DashboardPage = () => {
 
 			setDbUsers(res.data.users);
 		} catch (err) {
-			alert(`${err}`);
+			navigate("/signin");
 		}
 	};
 
@@ -120,116 +109,134 @@ const DashboardPage = () => {
 
 	return (
 		<div>
-			{showLoading ? (
+			{showLoading || !currentUser ? (
 				<LoadingSpinner />
 			) : (
 				<div>
-					{/** Navbar */}
-					<div className="sticky w-full flex justify-between px-2 py-2 border-b-[1px]">
-						<div className="font-semibold text-sm">
-							Payments App
-						</div>
-						<div className="flex">
-							<div className="text-sm">
-								Hello,{" "}
-								<span className="font-semibold">
-									{currentUser.firstName}!
-								</span>
+					{currentUser && currentUser.firstName ? (
+						<div>
+							{/** Navbar */}
+							<div className="sticky w-full flex justify-between px-2 py-2 border-b-[1px]">
+								<div className="font-semibold text-sm">
+									Payments App
+								</div>
+								<div className="flex">
+									<div className="text-sm">
+										Hello,{" "}
+										<span className="font-semibold">
+											{currentUser
+												? currentUser.firstName
+												: ""}
+											!
+										</span>
+									</div>
+									<div className="bg-gray-200 h-5 w-5 rounded-full mx-2 flex justify-center text-[10px] items-center font-semibold">
+										{currentUser && currentUser.firstName
+											? currentUser.firstName.charAt(0)
+											: ""}
+									</div>
+									<button
+										className="flex justify-center items-center h-5 w-5 text-red-500"
+										onClick={handleShowSignoutDialog}
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+											strokeWidth="1"
+											stroke="currentColor"
+											className="w-6 h-6"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+											/>
+										</svg>
+									</button>
+								</div>
 							</div>
-							<div className="bg-gray-200 h-5 w-5 rounded-full mx-2 flex justify-center text-[10px] items-center font-semibold">
-								{currentUser.firstName.charAt(0)}
+
+							{/** Balance */}
+							<div className="flex items-baseline">
+								<div className="px-2 text-[12px] font-semibold my-2">
+									Your balance
+								</div>
+								<div className="text-[12px] font-semibold">
+									${currentUserBalance}
+								</div>
 							</div>
-							<button
-								className="flex justify-center items-center h-5 w-5 text-red-500"
-								onClick={handleShowSignoutDialog}
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									fill="none"
-									viewBox="0 0 24 24"
-									strokeWidth="1"
-									stroke="currentColor"
-									className="w-6 h-6"
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
-									/>
-								</svg>
-							</button>
+
+							{/** Search for Users */}
+							<div className="px-2 text-[13px] font-semibold mb-1">
+								Users
+							</div>
+							<div className="px-2 mb-2">
+								<TextInput
+									placeholder={"Search users..."}
+									id={"searchUsers"}
+									name={"search-users"}
+									handleChange={onChange}
+									value={filter}
+								/>
+							</div>
+
+							{/** Users in Database */}
+							<div className="px-2">
+								{dbUsers.map((dbUser) => {
+									if (
+										!filter &&
+										dbUser._id !== currentUser._id
+									) {
+										return (
+											<DashboardUserCard
+												key={dbUser._id}
+												user={dbUser}
+												showModal={
+													handleShowSendMoneyPopup
+												}
+											/>
+										);
+									}
+									if (
+										filter &&
+										dbUser.firstName
+											.toLowerCase()
+											.includes(filter.toLowerCase())
+									) {
+										return (
+											<DashboardUserCard
+												key={dbUser._id}
+												user={dbUser}
+												showModal={
+													handleShowSendMoneyPopup
+												}
+											/>
+										);
+									}
+								})}
+							</div>
+
+							{/** Send Money Modal */}
+							{showModal && (
+								<SendMoneyModalCard
+									onClose={handleCloseSendMoneyPopup}
+									reloadDashboard={handleReloadDashboard}
+								/>
+							)}
+
+							{showSignoutDialog && (
+								<ConfirmationDialog
+									message="Are you sure you want to sign out?"
+									onConfirm={() => {
+										handleSignout();
+									}}
+									onCancel={() => setShowSignoutDialog(false)}
+								/>
+							)}
 						</div>
-					</div>
-
-					{/** Balance */}
-					<div className="flex items-baseline">
-						<div className="px-2 text-[12px] font-semibold my-2">
-							Your balance
-						</div>
-						<div className="text-[12px] font-semibold">
-							${currentUserBalance}
-						</div>
-					</div>
-
-					{/** Search for Users */}
-					<div className="px-2 text-[13px] font-semibold mb-1">
-						Users
-					</div>
-					<div className="px-2 mb-2">
-						<TextInput
-							placeholder={"Search users..."}
-							id={"searchUsers"}
-							name={"search-users"}
-							handleChange={onChange}
-							value={filter}
-						/>
-					</div>
-
-					{/** Users in Database */}
-					<div className="px-2">
-						{dbUsers.map((dbUser) => {
-							if (!filter && dbUser._id !== currentUser._id) {
-								return (
-									<DashboardUserCard
-										key={dbUser._id}
-										user={dbUser}
-										showModal={handleShowSendMoneyPopup}
-									/>
-								);
-							}
-							if (
-								filter &&
-								dbUser.firstName
-									.toLowerCase()
-									.includes(filter.toLowerCase())
-							) {
-								return (
-									<DashboardUserCard
-										key={dbUser._id}
-										user={dbUser}
-										showModal={handleShowSendMoneyPopup}
-									/>
-								);
-							}
-						})}
-					</div>
-
-					{/** Send Money Modal */}
-					{showModal && (
-						<SendMoneyModalCard
-							onClose={handleCloseSendMoneyPopup}
-							reloadDashboard={handleReloadDashboard}
-						/>
-					)}
-
-					{showSignoutDialog && (
-						<ConfirmationDialog
-							message="Are you sure you want to sign out?"
-							onConfirm={() => {
-								handleSignout();
-							}}
-							onCancel={() => setShowSignoutDialog(false)}
-						/>
+					) : (
+						<div></div>
 					)}
 				</div>
 			)}

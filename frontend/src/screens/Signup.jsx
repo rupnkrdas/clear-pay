@@ -34,7 +34,7 @@ const SignupPage = () => {
 			};
 
 			const res = await axios.post(
-				`${BACKEND_URL}/user/signup`,
+				`${BACKEND_URL}/api/v1/user/signup`,
 				postData,
 				{
 					headers: {

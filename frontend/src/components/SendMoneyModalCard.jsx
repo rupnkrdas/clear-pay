@@ -27,7 +27,7 @@ const SendMoneyModalCard = ({ onClose, reloadDashboard }) => {
 				toUserId: recipientUser._id,
 			};
 			const res = await axios.post(
-				`${BACKEND_URL}/account/transfer`,
+				`${BACKEND_URL}/api/v1/account/transfer`,
 				postBody,
 				{
 					headers: {

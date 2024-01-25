@@ -59,7 +59,7 @@ const DashboardPage = () => {
 
 	const fetchUser = async () => {
 		try {
-			const res = await axios.get(`${BACKEND_URL}/user`, {
+			const res = await axios.get(`${BACKEND_URL}/api/v1/user`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("token")}`,
 				},
@@ -72,7 +72,7 @@ const DashboardPage = () => {
 	};
 	const fetchUserBalance = async () => {
 		try {
-			const res = await axios.get(`${BACKEND_URL}/account/balance`, {
+			const res = await axios.get(`${BACKEND_URL}/api/v1/account/balance`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("token")}`,
 				},
@@ -85,7 +85,7 @@ const DashboardPage = () => {
 	};
 	const fetchDbUsers = async () => {
 		try {
-			const res = await axios.get(`${BACKEND_URL}/user/bulk`, {
+			const res = await axios.get(`${BACKEND_URL}/api/v1/user/bulk`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("token")}`,
 				},

@@ -26,7 +26,7 @@ const SigninPage = () => {
 	const handleSigninUser = async () => {
 		try {
 			const res = await axios.post(
-				`${BACKEND_URL}/user/signin`,
+				`${BACKEND_URL}/api/v1/user/signin`,
 				{
 					username: signinState.username,
 					password: signinState.password,

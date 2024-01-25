@@ -12,8 +12,20 @@ const app = express();
 // connect to database
 connectToMongoDB(MONGO_URI);
 
-app.use(cors());
 app.use(express.json());
+// Allow requests only from your client-side application
+const allowedOrigins = ["https://payments-app-client.vercel.app"];
+app.use(
+	cors({
+		origin: (origin, callback) => {
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true);
+			} else {
+				callback(new Error("Not allowed by CORS"));
+			}
+		},
+	})
+);
 
 app.use("/api/v1", v1Router);
 

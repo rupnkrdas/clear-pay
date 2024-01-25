@@ -2,9 +2,9 @@ import { useState } from "react";
 import SubmitButton from "../components/SubmitButton";
 import TextInput from "../components/TextInput";
 import axios from "axios";
-import { BACKEND_URL } from "../config/Backend";
 import { signupFields } from "../constants/formFields";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../config/backendUrl";
 
 const fields = signupFields;
 const initialSignupState = {};
@@ -33,11 +33,15 @@ const SignupPage = () => {
 				password: signupState.password,
 			};
 
-			const res = await axios.post(`${BACKEND_URL}/user/signup`, postData, {
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
+			const res = await axios.post(
+				`${BACKEND_URL}/user/signup`,
+				postData,
+				{
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			);
 
 			localStorage.setItem("token", res.data.token);
 			navigate("/");

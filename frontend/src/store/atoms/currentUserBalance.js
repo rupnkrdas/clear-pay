@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
 import axios from "axios";
-import { BACKEND_URL } from "../../config/Backend";
+import { BACKEND_URL } from '../../config/backendUrl';
 
 export const currentUserBalanceAtom = atom({
 	key: "currentUserBalance",

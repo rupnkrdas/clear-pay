@@ -2,10 +2,10 @@ import { useState } from "react";
 import { signinFields } from "../constants/formFields";
 import TextInput from "../components/TextInput";
 import SubmitButton from "../components/SubmitButton";
-import { BACKEND_URL } from "../config/Backend";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import axios from "axios";
+import { BACKEND_URL } from "../config/backendUrl";
 
 const fields = signinFields;
 let initialSigninState = {};

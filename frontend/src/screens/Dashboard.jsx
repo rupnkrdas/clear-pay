@@ -2,19 +2,16 @@ import { useEffect, useState } from "react";
 import TextInput from "../components/TextInput";
 import DashboardUserCard from "../components/DashboardUserCard";
 import SendMoneyModalCard from "../components/SendMoneyModalCard";
-import {
-	useRecoilValue,
-	useSetRecoilState,
-} from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import axios from "axios";
 
-import { BACKEND_URL } from "../config/Backend";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
 import { currentUserAtom } from "../store/atoms/currentUser";
 import { currentUserBalanceAtom } from "../store/atoms/currentUserBalance";
 import { dbUsersAtom } from "../store/atoms/dbUsers";
 import ConfirmationDialog from "../components/ConfirmationDialog";
+import { BACKEND_URL } from "../config/backendUrl";
 
 const DashboardPage = () => {
 	const navigate = useNavigate();
@@ -134,7 +131,10 @@ const DashboardPage = () => {
 						</div>
 						<div className="flex">
 							<div className="text-sm">
-								Hello, <span className='font-semibold'>{currentUser.firstName}!</span>
+								Hello,{" "}
+								<span className="font-semibold">
+									{currentUser.firstName}!
+								</span>
 							</div>
 							<div className="bg-gray-200 h-5 w-5 rounded-full mx-2 flex justify-center text-[10px] items-center font-semibold">
 								{currentUser.firstName.charAt(0)}

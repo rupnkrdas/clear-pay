@@ -1,8 +1,8 @@
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { recipientUserAtom } from "../store/atoms/recipientUser";
 import axios from "axios";
-import { BACKEND_URL } from "../config/Backend";
 import { transferAmountAtom } from "../store/atoms/transferAmount";
+import { BACKEND_URL } from "../config/backendUrl";
 
 const SendMoneyModalCard = ({ onClose, reloadDashboard }) => {
 	const [recipientUser, setRecipientUser] = useRecoilState(recipientUserAtom);

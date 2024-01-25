@@ -126,7 +126,7 @@ const DashboardPage = () => {
 									Payments App
 								</div>
 								<div className="flex justify-center items-center">
-									<div className="text-sm text-[24px]">
+									<div className="text-[24px]">
 										Hello,{" "}
 										<span className="font-semibold">
 											{currentUser

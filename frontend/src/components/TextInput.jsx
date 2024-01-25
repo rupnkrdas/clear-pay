@@ -7,20 +7,22 @@ function TextInput({
 	placeholder,
 	name,
 	handleChange,
-	value
+	value,
 }) {
 	return (
-		<div className="w-full">
-			<label
-				className="text-[9px] font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-				htmlFor={labelFor}
-				id={id}
-			>
-				{labelText}
-			</label>
+		<div className="w-full mb-3">
+			<div className='mb-1'>
+				<label
+					className="text-[14px] font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+					htmlFor={labelFor}
+					id={id}
+				>
+					{labelText}
+				</label>
+			</div>
 
 			<input
-				className="flex w-full rounded-md border border-gray-300 bg-transparent px-2 py-1 text-[9px] placeholder:text-gray-500 placeholder:text-[8px] focus:outline-none focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+				className="flex w-full rounded-lg border border-gray-300 bg-transparent p-2 text-[14px] placeholder:text-gray-500 placeholder:text-[12px] focus:outline-none focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
 				type={type}
 				placeholder={placeholder}
 				required={isRequired}
@@ -30,7 +32,7 @@ function TextInput({
 				value={value}
 			></input>
 			{id === "password" && (
-				<div className="text-gray-500 text-[8px]">
+				<div className="text-gray-500 text-[12px]">
 					* min 6 characters
 				</div>
 			)}

@@ -72,11 +72,16 @@ const DashboardPage = () => {
 	};
 	const fetchUserBalance = async () => {
 		try {
-			const res = await axios.get(`${BACKEND_URL}/api/v1/account/balance`, {
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem("token")}`,
-				},
-			});
+			const res = await axios.get(
+				`${BACKEND_URL}/api/v1/account/balance`,
+				{
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem(
+							"token"
+						)}`,
+					},
+				}
+			);
 
 			setCurrentUserBalance(res.data.balance);
 		} catch (err) {
@@ -116,12 +121,12 @@ const DashboardPage = () => {
 					{currentUser && currentUser.firstName ? (
 						<div>
 							{/** Navbar */}
-							<div className="sticky w-full flex justify-between px-2 py-2 border-b-[1px]">
-								<div className="font-semibold text-sm">
+							<div className="sticky w-screen flex justify-between px-4 py-2 border-b-[1px]">
+								<div className="font-semibold text-[24px]">
 									Payments App
 								</div>
-								<div className="flex">
-									<div className="text-sm">
+								<div className="flex justify-center items-center">
+									<div className="text-sm text-[24px]">
 										Hello,{" "}
 										<span className="font-semibold">
 											{currentUser
@@ -130,13 +135,13 @@ const DashboardPage = () => {
 											!
 										</span>
 									</div>
-									<div className="bg-gray-200 h-5 w-5 rounded-full mx-2 flex justify-center text-[10px] items-center font-semibold">
+									<div className="bg-gray-200 h-8 w-8 rounded-full mx-2 flex justify-center text-[18px] items-center font-semibold">
 										{currentUser && currentUser.firstName
 											? currentUser.firstName.charAt(0)
 											: ""}
 									</div>
 									<button
-										className="flex justify-center items-center h-5 w-5 text-red-500"
+										className="flex justify-center items-center h-8 w-8 text-red-500"
 										onClick={handleShowSignoutDialog}
 									>
 										<svg
@@ -145,7 +150,7 @@ const DashboardPage = () => {
 											viewBox="0 0 24 24"
 											strokeWidth="1"
 											stroke="currentColor"
-											className="w-6 h-6"
+											className="w-8 h-8"
 										>
 											<path
 												strokeLinecap="round"
@@ -159,19 +164,19 @@ const DashboardPage = () => {
 
 							{/** Balance */}
 							<div className="flex items-baseline">
-								<div className="px-2 text-[12px] font-semibold my-2">
+								<div className="mx-4 text-[20px] font-semibold my-2">
 									Your balance
 								</div>
-								<div className="text-[12px] font-semibold">
+								<div className="text-[20px] font-semibold text-gray-700">
 									${currentUserBalance}
 								</div>
 							</div>
 
 							{/** Search for Users */}
-							<div className="px-2 text-[13px] font-semibold mb-1">
+							<div className="mx-4 text-[18px] font-semibold mb-1">
 								Users
 							</div>
-							<div className="px-2 mb-2">
+							<div className="mx-4 mb-2">
 								<TextInput
 									placeholder={"Search users..."}
 									id={"searchUsers"}
@@ -182,7 +187,7 @@ const DashboardPage = () => {
 							</div>
 
 							{/** Users in Database */}
-							<div className="px-2">
+							<div className="mx-4">
 								{dbUsers.map((dbUser) => {
 									if (
 										!filter &&

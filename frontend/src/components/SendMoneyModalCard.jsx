@@ -3,6 +3,7 @@ import { recipientUserAtom } from "../store/atoms/recipientUser";
 import axios from "axios";
 import { transferAmountAtom } from "../store/atoms/transferAmount";
 import { BACKEND_URL } from "../config/backendUrl";
+import TextInput from "./TextInput";
 
 const SendMoneyModalCard = ({ onClose, reloadDashboard }) => {
 	const [recipientUser, setRecipientUser] = useRecoilState(recipientUserAtom);
@@ -52,8 +53,8 @@ const SendMoneyModalCard = ({ onClose, reloadDashboard }) => {
 
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center">
-			<div className="bg-white pb-6 pl-6 pr-6 pt-3 rounded-md shadow-md flex flex-col w-[180px]">
-				<button className="w-5 h-6 self-end" onClick={handleOnClose}>
+			<div className="bg-white pb-6 pl-6 pr-6 pt-3 rounded-md shadow-md flex flex-col">
+				<button className="w-6 h-6 self-end" onClick={handleOnClose}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -69,24 +70,25 @@ const SendMoneyModalCard = ({ onClose, reloadDashboard }) => {
 					</svg>
 				</button>
 
-				<div className="font-bold mb-6 text-center">Send Money</div>
-				<div className="flex items-center">
-					<div className="bg-[#21C55D] h-5 w-5 rounded-full mr-2 flex justify-center text-[12px] items-center text-white">
+				<div className="font-bold mb-10 text-center text-[24px]">
+					Send Money
+				</div>
+				<div className="flex items-center mb-2">
+					<div className="bg-[#21C55D] h-8 w-8 rounded-full mr-2 flex justify-center text-[14px] items-center text-white">
 						{recipientUser.firstName.charAt(0)}
 					</div>
-					<div className="font-semibold text-[14px]">
+					<div className="font-semibold text-[18px]">
 						{recipientUser.firstName}
 					</div>
 				</div>
-				<div className="text-[8px] font-semibold">Amount (in Rs)</div>
-				<input
-					className="my-1 border rounded-md  placeholder:text-[8px] text-[8px] p-1 focus:outline-none"
-					placeholder="Enter Amount"
-					onChange={handleOnChange}
+				<div className="text-[12px] font-semibold">Amount (in Rs)</div>
+				<TextInput
+					handleChange={handleOnChange}
+					placeholder={"Enter Amount"}
 					value={!transferAmount ? "" : transferAmount}
 				/>
 				<button
-					className="bg-[#21C55D] text-white text-[10px] rounded-md py-1 hover:bg-green-600"
+					className="bg-[#21C55D] text-white text-[14px] rounded-md py-2 hover:bg-green-600"
 					onClick={handleInitiateTransfer}
 				>
 					Initiate Transfer

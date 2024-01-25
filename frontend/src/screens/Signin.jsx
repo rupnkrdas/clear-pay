@@ -47,9 +47,9 @@ const SigninPage = () => {
 	};
 	return (
 		<div className="bg-[#7F7F7F] flex justify-center items-start h-screen p-2">
-			<div className="card-container shadow-lg rounded-md w-[180px] flex flex-col p-2 items-center bg-[#FFFFFF] mt-24">
-				<div className="font-bold">Sign In</div>
-				<div className="text-[9px] text-center text-gray-500">
+			<div className="card-container shadow-lg rounded-lg flex flex-col p-4 items-center bg-[#FFFFFF] mt-14 w-[300px]">
+				<div className="font-bold text-[28px] mb-1">Sign In</div>
+				<div className="text-[14px] text-center text-gray-500 mb-6">
 					Enter your credentials to access your account
 				</div>
 				{signinFields.map((field) => (
@@ -72,10 +72,10 @@ const SigninPage = () => {
 						handleSubmit={handleSubmit}
 					/>
 				</div>
-				<div className="flex text-[8px] mt-1 ">
+				<div className="flex text-[12px] mt-1 ">
 					<div>Don't have an account?</div>
 					<button
-						className="mx-1 underline font-semibold"
+						className="mx-1 underline font-semibold text-[12px]"
 						onClick={() => navigate("/signup")}
 					>
 						Sign Up

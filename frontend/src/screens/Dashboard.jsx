@@ -33,7 +33,7 @@ const DashboardPage = () => {
 	const [showLoading, setShowLoading] = useState(false);
 
 	const [showModal, setShowModal] = useState(false);
-	const [filter, setFilter] = useState(null);
+	const [filter, setFilter] = useState("");
 	const [showSignoutDialog, setShowSignoutDialog] = useState(false);
 
 	const handleShowSendMoneyPopup = () => {

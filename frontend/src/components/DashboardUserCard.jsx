@@ -15,7 +15,9 @@ const DashboardUserCard = ({ user, showModal }) => {
 				<div className="bg-gray-200 h-8 w-8 rounded-full flex justify-center text-[14px] items-center mr-2">
 					{user.firstName.charAt(0)}
 				</div>
-				<div className="font-semibold text-[18px]">{user.firstName} {user.lastName}</div>
+				<div className="font-semibold text-[18px]">
+					{user.firstName} {user.lastName}
+				</div>
 			</div>
 			<div className="flex justify-center">
 				<button

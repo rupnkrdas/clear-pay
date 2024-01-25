@@ -1,4 +1,4 @@
-const  ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
+const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 			<div className="bg-white p-4 rounded-md shadow-sm text-[16px]">
@@ -22,4 +22,4 @@ const  ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
 	);
 };
 
-export default ConfirmationDialog
+export default ConfirmationDialog;

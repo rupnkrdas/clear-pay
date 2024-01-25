@@ -11,7 +11,7 @@ function TextInput({
 }) {
 	return (
 		<div className="w-full mb-3">
-			<div className='mb-1'>
+			<div className="mb-1">
 				<label
 					className="text-[14px] font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 					htmlFor={labelFor}

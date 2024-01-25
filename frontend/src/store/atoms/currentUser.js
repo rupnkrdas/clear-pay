@@ -8,5 +8,5 @@ export const currentUserAtom = atom({
 	// 	lastName: "Last Name",
 	// 	username: "firstlast@gmail.com",
 	// },
-    default: {},
+	default: {},
 });

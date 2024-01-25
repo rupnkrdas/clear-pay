@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const transferAmountAtom = atom({
-  key: "transferAmount",
-  default: 0,
-})
+	key: "transferAmount",
+	default: 0,
+});

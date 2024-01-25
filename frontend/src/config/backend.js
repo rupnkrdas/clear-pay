@@ -1,3 +1,3 @@
-const BACKEND_URL = "http://localhost:3000/api/v1";
+const BACKEND_URL = "https://payments-app-backend.vercel.app/";
 
 export { BACKEND_URL };

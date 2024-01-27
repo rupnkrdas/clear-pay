@@ -4,7 +4,7 @@ Clear-Pay is a secure and efficient payments application built using the MERN st
 
 ## Demo
 
-[Clear-Pay Demo](https://github.com/your-username/clear-pay/assets/your-demo-url)
+https://github.com/rupnkrdas/payments-app/assets/88283289/61924757-e11a-49bd-87a6-609f99a49f73
 
 ## Features
 

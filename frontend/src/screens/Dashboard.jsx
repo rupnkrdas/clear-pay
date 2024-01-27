@@ -168,7 +168,7 @@ const DashboardPage = () => {
 									Your balance
 								</div>
 								<div className="text-[20px] font-semibold text-gray-700">
-									${currentUserBalance}
+									₹{currentUserBalance}
 								</div>
 							</div>
 
